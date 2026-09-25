@@ -24,7 +24,7 @@ public class ProductService {
 	
 	public Product addProduct(Product p ) {
 		System.out.println(p);
-	Optional<Product> pr=repo.findByNameIgnorCase(p.getName());
+	Optional<Product> pr=repo.findByNameIgnoreCase(p.getName());
 	if(pr.isPresent()) {
 		
 		throw new RuntimeException("product already exists");
