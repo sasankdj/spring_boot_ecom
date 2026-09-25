@@ -24,7 +24,12 @@ public class ProductService {
 	
 	public Product addProduct(Product p ) {
 		System.out.println(p);
-		return repo.save(p);
+	Optional<Product> pr=repo.findByNameIgnorCase(p.getName());
+	if(pr.isPresent()) {
+		
+		throw new RuntimeException("product already exists");
+	}
+	return repo.save(p);
 	}
 	
 	public List<Product> addProducts(List<Product> li){
