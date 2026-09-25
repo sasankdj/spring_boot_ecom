@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import in.main.entities.Address;
 import in.main.entities.OrderItem;
+import in.main.entities.OrderReq;
 import in.main.entities.Orders;
 import in.main.entities.User;
 import in.main.jwt.JwtService;
@@ -46,10 +49,16 @@ public class OrdersController {
 	
 	
 	@PostMapping("/place")
-	public Orders placeOrder(HttpServletRequest request) {
+	public Orders placeOrder(HttpServletRequest request,@RequestBody OrderReq orderReq) {
 		String username = getUsername(request);
-		return ordersService.placeOrder(username);
+		return ordersService.placeOrder(username,orderReq);
 	}
+	
+//	@PostMapping("/placeExisting")
+//	public Orders placeOrderExist(HttpServletRequest request, int id) {
+//		String username = getUsername(request);
+//		return ordersService.placeOrder(username,id);
+//	}
 	
 	@GetMapping("/get")
 	@PreAuthorize("hasRole('ADMIN')")
