@@ -23,10 +23,12 @@ public class ProductService {
 	}
 	
 	public Product addProduct(Product p ) {
+		System.out.println(p);
 		return repo.save(p);
 	}
 	
 	public List<Product> addProducts(List<Product> li){
+		System.out.println(li);
 		return repo.saveAll(li);
 	}
 	
